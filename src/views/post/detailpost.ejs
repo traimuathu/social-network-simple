@@ -1,0 +1,44 @@
+<%- include('../partials/header') %>
+<%- include('../partials/sidebar') %>
+  <div class="box">
+    <div class="main-content">
+      <div class="list-post">
+        <div class="ui fluid card">
+          <div class="content">
+            <div class="right floated meta">14h</div>
+            <img class="ui avatar image" src="<%= post.owner.image %>"> <%= post.fullname %> 
+          </div>
+          <div class="image">
+            <img src="/static/images/posts/<%= post.image %>">
+          </div>
+          <div class="content" style="font-size: 13px;">
+            <span class="right floated">
+              <a class="ui mini button" href="/post/<%= post._id %>/view">
+                <i class="comment icon"></i>
+                <% if(post.comments.length == 0) { %>
+                  0
+                <% } else { %>
+                  <%= post.comments.length %> 
+                <% } %> 
+              </a>
+            </span>
+              <button class="ui mini red icon button">
+                <i class="thumbs up outline icon"></i> 
+                <% if(post.likes.length == 0) { %>
+                  0
+                <% } else { %>
+                  <%= post.likes.length %> 
+                <% } %>
+              </button>
+          </div>
+          <div class="extra content">
+            <div class="ui large transparent left icon input">
+              <i class="heart outline icon"></i>
+              <input type="text" placeholder="Add Comment...">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<%- include('../partials/footer') %>

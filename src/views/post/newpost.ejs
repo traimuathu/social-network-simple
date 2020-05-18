@@ -1,0 +1,15 @@
+<div class="new-post">
+  <form action="/post/newpost" enctype="multipart/form-data" method="POST">
+   <div class="ui fluid card">
+     <div class="extra content">
+         <textarea name="content" id="content-post" placeholder="Chào <%= user.fullname %>! Hôm nay bạn thế nào :)"></textarea>
+     </div>
+     <div class="content">
+       <input type="file" name="imagePost" id="image-post">
+       <span class="right floated">
+         <button class="ui mini black button">Đăng</button>
+       </span>
+     </div>
+   </div>
+  </form>
+ </div>
