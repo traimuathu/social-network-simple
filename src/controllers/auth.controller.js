@@ -1,6 +1,7 @@
 const UserSchema = require('../models/user.model');
 const PostSchema = require('../models/post.model');
 const bcrypt = require('bcrypt');
+const moment = require('moment');
 
 const Middleware = require('../utils/middleware');
 
@@ -95,7 +96,7 @@ AuthController.HomePage = async (req, res) => {
   if(req.user) {
     Middleware.getData(PostSchema)
       .then(data => {
-        res.render('user/home', {user: req.user, posts: data, isRender: true});
+        res.render('user/home', {user: req.user, posts: data, moment: moment});
       })
       .catch(err => console.log(err));
   }

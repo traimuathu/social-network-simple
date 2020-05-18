@@ -2,6 +2,8 @@ const PostSchema = require('../models/post.model');
 const UserSchema = require('../models/user.model');
 const async = require('async');
 
+const moment = require('moment');
+
 const Middleware = require('../utils/middleware');
 
 const PostController = {};
@@ -56,7 +58,8 @@ PostController.DetailPost = (req, res) => {
   if(req.params.id) {
     Middleware.findId(PostSchema, {_id: req.params.id})
       .then(data => {
-        res.render('post/detailpost', {postid: req.params.id, post: data});
+        console.log(data);
+        res.render('post/detailpost', {postid: req.params.id, post: data, moment: moment});
       })
       .catch(err => {
         console.log(err);
@@ -65,11 +68,28 @@ PostController.DetailPost = (req, res) => {
   }
 }
 
-// PostController.Comment = (req, res) => {
-//   if(req.params.id) {
+PostController.CommentPost = (req, res) => {
+  const comment = req.body.comment;
+  const postId = req.body.postid;
 
-//   }
-// }
+  if(comment == '') {
+    return false
+  } else {
+    PostSchema.findOneAndUpdate({_id: postId}, {
+      $push: {
+        comments: {
+          user: req.user._id,
+          fullname: req.user.fullname,
+          username: req.user.username,
+          comment: comment
+        }
+      }
+    }, (err, data) => {
+      if(err) res.json({msg: err});
+      res.redirect(`/post/${postId}/view`);
+    });
+  }
+}
 
 // PostController.Like = (req, res) => {
 //   if(req.params.id) {

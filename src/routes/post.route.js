@@ -29,14 +29,14 @@ const uploadFile = multer({
 
 router.post('/newpost', uploadFile.single('imagePost'), PostController.NewPost);
 
-// router.get('/:id/view', PostController.DetailPost);
+router.get('/:id/view', PostController.DetailPost);
 
 // router.post('/editpost', PostController.EditPost);
 
 // router.post('/deletepost', PostController.DeletePost);
 
-// router.post('/comment', PostController.Comment);
+router.post('/comment', PostController.CommentPost);
 
-// router.post('/like', PostController.Comment);
+// router.post('/like', PostController.Like);
 
 module.exports = router;

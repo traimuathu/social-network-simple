@@ -4,7 +4,7 @@
       <div class="ui fluid card">
         <div class="content">
           <% if(post.datePost) { %>
-          <div class="right floated meta" data-timeago="<%= post.datePost %>" id="timeago_post"></div>
+          <div class="right floated meta" data-timeago="<%= post.datePost %>"><%= moment(post.datePost).fromNow() %></div>
           <% } %>
           <img class="ui avatar image" src="https://via.placeholder.com/150"> <%= post.owner.fullname %> 
         </div>
@@ -13,21 +13,23 @@
         </div>
         <div class="image" id="image-post">
           <% if(post.image) { %>
-            <img src="/static/images/posts/<%= post.image %> " alt="<%= post.image %>">
+            <a href="/post/<%= post._id %>/view">
+              <img src="/static/images/posts/<%= post.image %> " alt="<%= post.image %>">
+            </a>
           <% } %> 
         </div>
         <div class="content" style="font-size: 13px;">
           <span class="right floated">
-            <a class="ui mini button" href="/post/<%= post._id %>/view">
-              <i class="comment icon"></i>
+            <a class="ui mini basic black button" href="/post/<%= post._id %>/view">
+              <i class="comment icon"></i> Hiện tại có
               <% if(post.comments.length == 0) { %>
                 0
               <% } else { %>
                 <%= post.comments.length %> 
-              <% } %> 
+              <% } %> bình luận
             </a>
           </span>
-            <button class="ui mini red icon button">
+            <button class="ui mini red basic icon button">
               <i class="thumbs up outline icon"></i> 
               <% if(post.likes.length == 0) { %>
                 0
@@ -41,10 +43,12 @@
   <% } %>
 </div>
 <script type="text/javascript">
+/*
   document.addEventListener('DOMContentLoaded', () => {
   const timeaAgoPost = document.getElementById('timeago_post');
   const time = timeaAgoPost.dataset.timeago;
  
   timeaAgoPost.textContent = moment(new Date(time).toISOString()).fromNow();;
 }, false);
+*/
 </script>

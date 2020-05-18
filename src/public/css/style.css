@@ -74,7 +74,12 @@ ul li {
   margin: 20px auto;  
 }
 
-.main-content .list-post {
+.main-content-detail {
+  width: 600px;
+  margin: 20px auto; 
+}
+
+.main-content .list-post, .main-content-detail .list-post {
   margin-top: 10px;
 }
 
@@ -95,3 +100,10 @@ ul li {
   border: none;
 }
 
+.list-comment {
+  padding: 10px;
+}
+
+#content-commment {
+  margin-top: 10px;
+}
