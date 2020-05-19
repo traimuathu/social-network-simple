@@ -37,6 +37,6 @@ router.get('/:id/view', PostController.DetailPost);
 
 router.post('/comment', PostController.CommentPost);
 
-// router.post('/like', PostController.Like);
+router.post('/like', PostController.LikePost);
 
 module.exports = router;

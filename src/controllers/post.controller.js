@@ -91,11 +91,37 @@ PostController.CommentPost = (req, res) => {
   }
 }
 
-// PostController.Like = (req, res) => {
-//   if(req.params.id) {
+PostController.LikePost = (req, res) => {
+  const postId = req.body.postid;
+  Middleware.findOneData(PostSchema, {id: postId})
+    .then(post => {
+      // Neu nguoi dung chua like bai viet
+      if(post.likes.indexOf(req.user_id) == -1) {
+        Middleware.findOneData(UserSchema, {_id: post.owner.userid})
+          .then(user => {
+            user.likes += 1;
+            user.save(err => {
+              if(err) return err;
+              post.likes.push(req.user._id);
+              post.save((err, log) => {
+                if(err) return err;
+                if(log) {
+                  res.redirect('/post/${postId}/view');
+                }
+              })
+            });
+          })
+          .catch(err => console.log(err));
+      } else {
+        res.json({msg: 'Dont more than twice'})
+      }
+    })
+    .catch(err => console.log(err));
+}
 
-//   }
-// }
+PostController.LikeCount = (req, res) => {
+  
+}
 
 // PostController.EditPost = (req, res) => {
 //   if(req.params.id) {

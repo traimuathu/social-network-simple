@@ -96,6 +96,8 @@ AuthController.HomePage = async (req, res) => {
   if(req.user) {
     Middleware.getData(PostSchema)
       .then(data => {
+        // console.log(data[0]);
+        // console.log([...data].map(el => el.comments));
         res.render('user/home', {user: req.user, posts: data, moment: moment});
       })
       .catch(err => console.log(err));

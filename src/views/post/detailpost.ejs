@@ -22,28 +22,32 @@
                 <% } %> bình luận
               </a>
             </span>
-              <button class="ui mini red basic icon button">
+              <button class="ui mini primary basic icon button" id="likeaction">
                 <i class="thumbs up outline icon"></i> 
                 <% if(post.likes.length == 0) { %>
-                  0
+                  <span id="likecount">0</span>
                 <% } else { %>
-                  <%= post.likes.length %> 
+                  <span id="numberLikes"><%= post.likes.length %> </span>
                 <% } %>
-              </button>
+                </button>
           </div>
          <div class="list-comment">
-          <% post.comments.forEach((comment) => { %>
-            <div class="content" id="content-commment">
-              <a href="#"><img class="ui avatar image" src="<%= post.owner.image %>"> <span><%= comment.fullname %></span></a>: 
-              <span id="comment-body"><%= comment.comment %> </span>
-            </div>
-          <% }) %>  
+          <% if(post.comments.length == 0) { %>
+            <p class="txt-center">Hãy là người dầu tiên bình luận!</p>
+          <% } else { %>
+            <% post.comments.forEach((comment) => { %>
+              <div class="content" id="content-commment">
+                <a href="#"><img class="ui avatar image" src="<%= post.owner.image %>"> <span><%= comment.fullname %></span></a>: 
+                <span id="comment-body"><%= comment.comment %> </span>
+              </div>
+            <% }) %>  
+          <% } %> 
          </div>
           <div class="extra content">
            <form action="/post/comment" method="POST">
             <div class="ui fluid transparent action input">
               <input type="text" name="comment" placeholder="Thêm bình luận">
-              <input type="text" name="postid" value="<%= post._id %>" hidden>
+              <input type="text" id="postid" name="postid" value="<%= post._id %>" hidden>
               <button type="submit" class="ui icon button">
                 <i class="comment icon"></i>
               </button>
@@ -54,4 +58,6 @@
       </div>
     </div>
   </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
+  <script src="/static/javascript/like.js"></script>
 <%- include('../partials/footer') %>

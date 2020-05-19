@@ -29,13 +29,16 @@
               <% } %> bình luận
             </a>
           </span>
-            <button class="ui mini red basic icon button">
+            <button class="ui mini primary basic icon button">
               <i class="thumbs up outline icon"></i> 
               <% if(post.likes.length == 0) { %>
                 0
               <% } else { %>
                 <%= post.likes.length %> 
               <% } %>
+            </button>
+            <button class="ui mini gray basic icon button">
+              <i class="thumbs down outline icon"></i> 0
             </button>
         </div>
       </div>

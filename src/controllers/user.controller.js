@@ -1,7 +1,9 @@
 const UserController = {}
 
 UserController.ProfilePage = (req, res) => {
-
+  if(req.user) {
+    res.render('user/profile');
+  }
 }
 
 UserController.UpDateInformation = (req, res) => {
