@@ -11,7 +11,7 @@ AuthController.LoginPage = (req, res) => {
   if(req.user) {
     res.redirect('/Home');
   } else {
-    res.render('user/login', {title: 'Login Page'});
+    res.render('auth/login', {title: 'Login Page'});
   }
 }
 
@@ -23,7 +23,7 @@ AuthController.SignupPage = (req, res) => {
   if(req.user) {
     res.redirect('/Home');
   } else {
-    res.render('user/signup', {title: 'REGISTER PAGE'});
+    res.render('auth/signup', {title: 'REGISTER PAGE'});
   }
 }
 
@@ -41,13 +41,13 @@ AuthController.Signup = (req, res) => {
   }
 
   if(errors.length > 0) {
-    res.render('user/signup', {errors});
+    res.render('auth/signup', {errors});
   } else {
     UserSchema.findOne({email: email})
       .then(user => {
         if(user) {
           errors.push({msg: 'Email is exist'});
-          res.render('user/signup', {errors});
+          res.render('auth/signup', {errors});
         } else {
           const newUser = new UserSchema({
             fullname: req.body.fullname,

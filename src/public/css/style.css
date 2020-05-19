@@ -111,3 +111,8 @@ ul li {
 .txt-center {
   text-align: center;
 }
+
+.profile-content {
+  width: 600px;
+  margin: 20px auto; 
+}

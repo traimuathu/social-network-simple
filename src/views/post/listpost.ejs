@@ -6,7 +6,7 @@
           <% if(post.datePost) { %>
           <div class="right floated meta" data-timeago="<%= post.datePost %>"><%= moment(post.datePost).fromNow() %></div>
           <% } %>
-          <img class="ui avatar image" src="https://via.placeholder.com/150"> <%= post.owner.fullname %> 
+          <a href="/user/profile/<%= post.owner.userid %>"><img class="ui avatar image" src="https://via.placeholder.com/150"> <%= post.owner.fullname %> </a>
         </div>
         <div class="content">
           <p><%= post.content %> </p>

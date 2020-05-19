@@ -1,0 +1,85 @@
+<%- include('../partials/header') %>
+<%- include('../partials/sidebar') %>
+<div class="box">
+  <div class="profile-content">
+    <div class="ui fluid card">
+      <div class="image">
+        <!-- <img src=""> -->
+        
+      </div>
+      <div class="content">
+        <% if(data._id == user._id) { %>
+          <a class="header">Xin chào bạn!</a>
+        <% } else { %>
+          <a class="header">Tên dầy đủ: <%= data.fullname %> </a>
+        <% } %> 
+        <div class="meta">
+          <span class="date">Ngày tham gia: <%= moment(data.createAt).fromNow() %> </span>
+        </div>
+        
+      </div>
+      <div class="content">
+        <div class="description">
+          <% if(data.status == '') { %>
+            Bạn chưa cập nhật satus. <a href="/user/update/<%= data._id %>">Ấn vào đây để update</a>
+          <% } else { %>
+              <%= data.status %> 
+          <% } %> 
+        </div>
+      </div>
+      <div class="content">
+        <div class="description">
+          <% if(data.phone == null) { %>
+            Bạn chưa cập nhật số điện thoại. <a href="/user/update/<%= data._id %>">Ấn vào đây để update</a>
+          <% } else { %>
+              <%= data.phone %> 
+          <% } %> 
+        </div>
+      </div>
+      <div class="content">
+        <div class="description">
+          <% if(data.address == '') { %>
+            Bạn chưa cập nhật địa chỉ. <a href="/user/update/<%= data._id %>">Ấn vào đây để update</a>
+          <% } else { %>
+              <%= data.address %> 
+          <% } %> 
+        </div>
+      </div>
+      <div class="content">
+        <div class="description">
+          <% if(data.avatar == '') { %>
+            Bạn chưa cập nhật ảnh đại diện. <a href="#">Ấn vào đây để update</a>
+          <% } else { %>
+              <%= data.avatar %> 
+          <% } %> 
+        </div>
+      </div>
+      <div class="content">
+        <div class="description">
+          Số lượt thích: <%= data.likes %> 
+        </div>
+      </div>
+      <div class="content">
+        <div class="description"><% if(data.posts.length == 0) { %>
+          Bạn chưa có bài viết nào -_-
+        <% } else { %>
+          Số lượng bài viết: <%= data.posts.length %>
+        <% } %>  </div>
+        <div class="description">
+          <% data.posts.forEach(item => { %>
+            <a href="/post/<%= item.postId %>/view">
+            <img src="/static/images/posts/<%= item.image %>" alt="<%= item.image %>" width="200">
+            </a>
+          <% }) %>
+        </div>
+      </div>
+      <div class="extra content">
+        <div class="ui two buttons">
+          <div class="ui basic green button">Approve</div>
+          <div class="ui basic red button">Decline</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<%- include('../partials/footer') %>

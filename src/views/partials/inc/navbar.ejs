@@ -5,7 +5,7 @@
       <div class="right menu">
         <a class="item"><i class="bell icon"></i> (0)</a>
         <a class="item"><i class="envelope icon"></i> (0)</a>
-        <a class="item"><%= user.fullname %></a>
+        <a href="/user/profile/<%= user._id %>" class="item"><%= user.fullname %></a>
         <a href="/Logout" class="item">logout</a>
       </div>
     </div>

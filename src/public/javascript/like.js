@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const numberLikes = document.getElementById('numberLikes');
   
   likeAction.addEventListener('click', function(e) {
-    e.preventDefault();
+    // console.log(e.target.parentElement.querySelector('#numberLikes').textContent);
     axios({
       url: '/post/like',
       method: 'POST',
@@ -14,9 +14,10 @@ document.addEventListener('DOMContentLoaded', function() {
         if(response.status != 200) {
           alert('Wrong error!');
         } else {
-          numberLikes.textContent = parseInt(numberLikes.textContent) + 1;
+          e.target.parentElement.querySelector('#numberLikes').textContent = parseInt(e.target.parentElement.querySelector('#numberLikes').textContent) + 1;
         }
       })
       .catch(err => alert(err));
   });
 }, false);
+

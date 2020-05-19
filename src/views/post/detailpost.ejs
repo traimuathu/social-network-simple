@@ -23,6 +23,7 @@
               </a>
             </span>
               <button class="ui mini primary basic icon button" id="likeaction">
+                <input type="text" name="postid1" value="<%= post._id %>" hidden>
                 <i class="thumbs up outline icon"></i> 
                 <% if(post.likes.length == 0) { %>
                   <span id="likecount">0</span>
@@ -47,7 +48,7 @@
            <form action="/post/comment" method="POST">
             <div class="ui fluid transparent action input">
               <input type="text" name="comment" placeholder="Thêm bình luận">
-              <input type="text" id="postid" name="postid" value="<%= post._id %>" hidden>
+              <input type="text" name="postid" value="<%= post._id %>" hidden>
               <button type="submit" class="ui icon button">
                 <i class="comment icon"></i>
               </button>
