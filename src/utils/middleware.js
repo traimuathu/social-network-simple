@@ -1,6 +1,6 @@
 const Middleware = {}
 
-Middleware.getData = (db) => {
+Middleware.getData = db => {
   return new Promise((resolve, reject) => {
     db.find((err, data) => {
       if(err) reject(err);
@@ -27,6 +27,7 @@ Middleware.findOneData = (db, obj) => {
       if(data) {
         resolve(data);
       }
+      return resolve();
     })
   })
 }

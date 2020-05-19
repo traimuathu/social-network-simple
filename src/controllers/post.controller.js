@@ -92,14 +92,41 @@ PostController.CommentPost = (req, res) => {
 }
 
 PostController.LikePost = (req, res) => {
-  const postId = req.body.postid1;
-  console.log(postId);
-
+  const post_id = req.body.id;
+  const userid = req.user._id;
+  Middleware.findId(PostSchema, {_id: req.body.post_id})
+    .then(data => {
+      const flag = data.likes.include(post_id);
+      if(!flag) {
+        Middleware.findOneData(UserSchema, {_id: data.owner.userid})
+          .then(user => {
+            if(user) {
+              user.likes = user.likes + 1;
+              user.save((err, u) => {
+                if(err) res.json({msg: 'err'});
+                if(u) {
+                  data.likes.push(userid);
+                  data.save((err, data) => {
+                    if(err) res.json({msg: err});
+                    if(data) {
+                      res.send(data);
+                    }
+                  })
+                }
+              })
+            }
+          }).catch(err => {
+            throw err
+          })
+      }
+    }).catch(err => {
+      throw err
+    })
 }
 
-PostController.LikeCount = (req, res) => {
+// PostController.LikeCount = (req, res) => {
   
-}
+// }
 
 // PostController.EditPost = (req, res) => {
 //   if(req.params.id) {

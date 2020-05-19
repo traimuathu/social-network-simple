@@ -23,7 +23,7 @@
               </a>
             </span>
               <button class="ui mini primary basic icon button" id="likeaction">
-                <input type="text" name="postid1" value="<%= post._id %>" hidden>
+                <input type="text" id="post_id" name="post_id" value="<%= post._id %>" hidden>
                 <i class="thumbs up outline icon"></i> 
                 <% if(post.likes.length == 0) { %>
                   <span id="likecount">0</span>
